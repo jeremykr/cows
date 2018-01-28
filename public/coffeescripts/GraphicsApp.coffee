@@ -33,7 +33,7 @@ class @GraphicsApp
         return true
 
     run: =>
-        return if (@processEvent @events.pop()) == false
+        return if (@processEvent @events.shift()) == false
         @draw()
         @update()
         window.setTimeout @run, 1000/@fps

@@ -51,7 +51,7 @@
     }
 
     run() {
-      if ((this.processEvent(this.events.pop())) === false) {
+      if ((this.processEvent(this.events.shift())) === false) {
         return;
       }
       this.draw();
