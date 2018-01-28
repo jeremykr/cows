@@ -1,6 +1,7 @@
 class @GraphicsApp
-    constructor: (@canvas) ->
-        @gl = @canvas.getContext "webgl"
+    constructor: ->
+        @gl = null
+        @setCanvasSize()
         @events = []
         @red = 0
         @green = 1
@@ -11,6 +12,8 @@ class @GraphicsApp
             return
         else
             console.log "WebGL successfully initialized."
+
+        window.addEventListener "resize", @setCanvasSize
 
         addEvent = (event) => @events.push event
         document.addEventListener "keydown", addEvent
@@ -37,3 +40,10 @@ class @GraphicsApp
         @draw()
         @update()
         window.setTimeout @run, 1000/@fps
+
+    setCanvasSize: =>
+        $canvas = $("#glCanvas")
+        $canvas.attr "width", $(window).width() - 20
+        $canvas.attr "height", $(window).height() - 20
+        canvas = document.querySelector "#glCanvas"
+        @gl = canvas.getContext "webgl"
