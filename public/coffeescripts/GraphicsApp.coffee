@@ -7,8 +7,10 @@ class @GraphicsApp
         @green = 1
         @fps = 60
 
+        @triangle = new Triangle(@gl)
+
         if not @gl
-            alert "Unable to initialize WebGL. Your browser or machine may not support it."
+            alert "Unable to initialize WebGL2. Your browser or machine may not support it."
             return
         else
             console.log "WebGL successfully initialized."
@@ -22,6 +24,7 @@ class @GraphicsApp
         gl = @gl
         gl.clearColor @red,@green,0,1
         gl.clear gl.COLOR_BUFFER_BIT
+        @triangle.draw()
 
     update: =>
         @red += 0.01

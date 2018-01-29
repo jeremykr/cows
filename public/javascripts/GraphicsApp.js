@@ -13,24 +13,26 @@
       this.red = 0;
       this.green = 1;
       this.fps = 60;
+      this.triangle = new Triangle(this.gl);
       if (!this.gl) {
-        alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+        alert("Unable to initialize WebGL2. Your browser or machine may not support it.");
         return;
       } else {
         console.log("WebGL successfully initialized.");
       }
+      window.addEventListener("resize", this.setCanvasSize);
       addEvent = (event) => {
         return this.events.push(event);
       };
       document.addEventListener("keydown", addEvent);
-      window.addEventListener("resize", this.setCanvasSize);
     }
 
     draw() {
       var gl;
       gl = this.gl;
       gl.clearColor(this.red, this.green, 0, 1);
-      return gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      return this.triangle.draw();
     }
 
     update() {
